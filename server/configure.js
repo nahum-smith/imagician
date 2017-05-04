@@ -8,12 +8,17 @@ const morgan = require('morgan')
 const methodOverride = require('method-override')
 const errorHandler = require('errorhandler')
 const moment = require('moment')
+const multer = require('multer')
 
 
 module.exports = (app) => {
 app.use(morgan('dev'))
-  app.use(bodyParser.urlencoded({'extended':true}))
-  app.use(bodyParser.json())
+  // app.use(bodyParser({
+  //   uploadDir:path.join(__dirname, 'public/upload/temp')
+  // }))
+  app.use(multer({
+    dest: path.join(__dirname, '../public/upload/temp')
+  }).any())
   app.use(methodOverride())
   app.use(cookieParser())
   app.use('/public/', express.static(path.join(__dirname, '../public')))
