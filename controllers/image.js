@@ -70,7 +70,7 @@ module.exports = {
     saveImage(req, res)
   },
   like: (req, res) => {
-    res.send(`The image:like controller`)
+    res.json({likes: 1})
   },
   comment: (req, res) => {
     res.send(`The image:comment POST controller`)
