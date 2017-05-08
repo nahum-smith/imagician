@@ -12,20 +12,21 @@ const multer = require('multer')
 
 
 module.exports = (app) => {
-app.use(morgan('dev'))
+  app.use(morgan('dev'))
   // app.use(bodyParser({
   //   uploadDir:path.join(__dirname, 'public/upload/temp')
   // }))
   app.use(multer({
     dest: path.join(__dirname, '../public/upload/temp')
   }).any())
+
   app.use(methodOverride())
   app.use(cookieParser())
   app.use('/public/', express.static(path.join(__dirname, '../public')))
 
-if ('development' === app.get('env')) {
-  app.use(errorHandler())
-}
+  if ('development' === app.get('env')) {
+    app.use(errorHandler())
+  }
   routes(app)
 
   app.engine('handlebars', exphbs.create({
@@ -38,6 +39,8 @@ if ('development' === app.get('env')) {
       }
     }
   }).engine)
+
   app.set('view engine', 'handlebars')
+
   return app
 }
