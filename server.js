@@ -14,9 +14,6 @@ mongoose.connection.on('open', () => {
   console.log('Mongoose connected...')
 })
 
-app.get('/', (req, res) => {
-  res.send("Yo Son....I'm back...!")
-})
 app.listen(app.get('port'), () => {
   console.log(`server listening on port ${app.get('port')}`)
 })
